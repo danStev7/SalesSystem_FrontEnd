@@ -1,1 +1,45 @@
-<p>sales-system works!</p>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="Titulo">Sales System</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="Titulo">Agregar Venta</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="Titulo">Listado de Ventas</h5>
+                    <table class="table">
+                        <tbody>
+                            <tr *ngFor="let sale of listSales">
+                                <td>{{sale.AdvisorId}}</td>
+                                <td>{{sale.Date}}</td>
+                                <td>{{sale.Description}}</td>
+                                <td>{{sale.Price}}</td>
+                                <td>{{sale.SaleStatusId}}</td>
+                                <td>
+                                    <i class="far fa-solid fa-user-pen text-info"></i>
+                                </td>
+                                <td>
+                                    <i class="far fa-solid fa-user-slash text-danger"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
