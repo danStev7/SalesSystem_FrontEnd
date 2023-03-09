@@ -10,30 +10,93 @@
     </div>
     
     <div class="row mt-4">
-        <div class="col-lg-6">
+        <div class="col-lg-5">
             <div class="card">
                 <div class="card-body">
                     <h5 class="Titulo">Agregar Venta</h5>
+                    <form (ngSubmit)="saveSale()">
+                        <div class="input-group input-group-lg mb-3">
+                          <span class="input-group-text">
+                            <i class="fas fa-user"></i>
+                          </span>
+                          <input formControlName="advisorId" type="text" class="form-control" placeholder="AdvisorId">
+                        </div>
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text">
+                              <i class="fas fa-user"></i>
+                            </span>
+                            <input formControlName="date" type="text" class="form-control" placeholder="Date">
+                        </div>
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text">
+                              <i class="fas fa-user"></i>
+                            </span>
+                            <input formControlName="description" type="text" class="form-control" placeholder="Description">
+                        </div>
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text">
+                              <i class="fas fa-user"></i>
+                            </span>
+                            <input formControlName="price" type="text" class="form-control" placeholder="Price">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="input-group input-group-lg mb-3">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                    <input formControlName="saleStatusId" type="text" class="form-control" placeholder="SaleStatusId">
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="input-group input-group-lg mb-3">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                    <input formControlName="customerId" type="text" class="form-control" placeholder="CustomerId">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fas fa-user"></i>&nbsp; Aceptar
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-7">
             <div class="card">
                 <div class="card-body">
                     <h5 class="Titulo">Listado de Ventas</h5>
-                    <table class="table">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">SaleId</th>
+                                <th scope="col">AdvisorId</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">SaleStatusId</th>
+                                <th scope="col">CustomerId</th>
+                            </tr>
+                        </thead>
                         <tbody>
-                            <tr *ngFor="let sale of listSales">
-                                <td>{{sale.AdvisorId}}</td>
-                                <td>{{sale.Date}}</td>
-                                <td>{{sale.Description}}</td>
-                                <td>{{sale.Price}}</td>
-                                <td>{{sale.SaleStatusId}}</td>
+                            <tr *ngFor="let sale of sales">
+                                <th scope="row">{{sale.saleId}}</th>
+                                <td>{{sale.advisorId}}</td>
+                                <td>{{sale.date}}</td>
+                                <td>{{sale.description}}</td>
+                                <td>{{sale.price}}</td>
+                                <td>{{sale.saleStatusId}}</td>
+                                <td>{{sale.customerId}}</td>
                                 <td>
                                     <i class="far fa-solid fa-user-pen text-info"></i>
                                 </td>
                                 <td>
-                                    <i class="far fa-solid fa-user-slash text-danger"></i>
+                                    <i (click)="deleteSale(sale.saleId)" (click)="getAllSales()" class="far fa-solid fa-user-slash text-danger"></i>
                                 </td>
                             </tr>
                         </tbody>

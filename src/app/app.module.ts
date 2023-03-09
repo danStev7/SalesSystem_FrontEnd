@@ -8,11 +8,13 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SalesSystemComponent } from './components/sales-system/sales-system.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SalesSystemComponent
+    SalesSystemComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

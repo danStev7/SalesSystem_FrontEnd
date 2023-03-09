@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { SalesService } from 'src/app/services/sales.service';
+import { Listsales } from '../../models/readsales.interface';
+import { Router } from '@angular/router'
+import { ToastrService} from 'ngx-toastr'
 
 @Component({
   selector: 'app-sales-system',
@@ -10,32 +11,30 @@ import { SalesService } from 'src/app/services/sales.service';
 })
 export class SalesSystemComponent implements OnInit{
 
-  listSales: any[] = [];
+  sales:Listsales[] = [];
 
-  form: FormGroup;
-
-  constructor(private fb: FormBuilder,
-    private toastr: ToastrService,
-    private _salesService: SalesService){
-      this.form = this.fb.group({
-        AdvisorId: ['', Validators.required],
-        Date: ['', Validators.required],
-        Description: ['', Validators.required],
-        Price: ['', Validators.required],
-        SaleStatusId: ['', Validators.required]
-      })
-    }
+  constructor(private _salesService:SalesService, private router:Router, private toastr:ToastrService) {}
 
     ngOnInit(): void{
-      this.getSales();
+      this.getAllSales();
     }
 
-    getSales() {
-      this._salesService.getListSales().subscribe( data => {
+    getAllSales() {
+      this._salesService.getAllSales().subscribe(data => {
         console.log(data);
-        this.listSales = data;
-      }, error => {
-        console.log(error);
+        this.sales = data;
       })
+    }
+
+    saveSale() {
+      this._salesService.saveSale(this.sales).subscribe(data => {
+        this.toastr.success('La venta fue registrada con exito!', 'Venta Registrada');
+      })
+    }
+
+    deleteSale(id:number) {
+      this._salesService.deleteSale(id).subscribe();
+      this.toastr.error('La venta fue eliminada con exito', 'Venta eliminada');
+      this.getAllSales();
     }
 }
